@@ -1,11 +1,13 @@
 package utils;
 
 import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.*;
 
 public class Steps {
 
+    @Step
     public static Response GET(String endpoint){
 
         Allure.addAttachment("URL", baseURI + endpoint);
@@ -19,7 +21,7 @@ public class Steps {
         return response;
 
     }
-
+    @Step
     public static void  isStatusCodeValid(Response response, int expectedStatusCode){
         response.then().assertThat().statusCode(expectedStatusCode);
     }

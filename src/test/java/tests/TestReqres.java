@@ -29,7 +29,7 @@ public class TestReqres {
         isStatusCodeValid(response, 200);
 
     }
-
+    @Test
     public void testSingleUser(){
         String url = "/users/2";
 
