@@ -9,8 +9,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.*;
-import static utils.Steps.GET;
-import static utils.Steps.isStatusCodeValid;
+import static utils.Steps.*;
 
 public class TestReqres {
 
@@ -36,6 +35,23 @@ public class TestReqres {
         Response response = GET(url);
 
         isStatusCodeValid(response, 200);
+    }
+
+    @Test
+    public void testCreate(){
+        String url = "/users";
+
+        String body = "{\n" +
+                "    \"name\": \"morpheus\",\n" +
+                "    \"job\": \"leader\"\n" +
+                "}";
+
+        Response response = POST(body, url);
+
+        isStatusCodeValid(response, 201);
+
+
+
     }
 
 }

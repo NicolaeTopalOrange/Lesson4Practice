@@ -26,4 +26,20 @@ public class Steps {
         response.then().assertThat().statusCode(expectedStatusCode);
     }
 
+    @Step
+    public static Response POST(String body, String endpoint){
+
+        Allure.addAttachment("URL", baseURI + endpoint);
+
+        Allure.addAttachment("Request body", body);
+
+       Response response = given().body(body).post(endpoint);
+
+       Allure.addAttachment("Status Code", String.valueOf(response.statusCode()));
+
+       Allure.addAttachment("Response body", response.body().prettyPrint());
+
+       return response;
+    }
+
 }
