@@ -1,9 +1,6 @@
 package tests;
 
-import io.qameta.allure.Allure;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.openqa.selenium.devtools.v85.fetch.model.AuthChallengeResponse;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
@@ -49,9 +46,9 @@ public class TestReqres {
         Response response = POST(body, url);
 
         isStatusCodeValid(response, 201);
-
-
+        isBodyContainsValue(response, "id");
 
     }
+
 
 }

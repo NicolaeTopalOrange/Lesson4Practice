@@ -4,6 +4,9 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.StringContains.containsString;
+
 
 public class Steps {
 
@@ -40,6 +43,16 @@ public class Steps {
        Allure.addAttachment("Response body", response.body().prettyPrint());
 
        return response;
+    }
+
+    @Step
+    public static void isBodyContainsValue(Response response, String key, String expectedResult){
+        response.then().assertThat().body(key, equalTo(expectedResult));
+    }
+
+    @Step
+    public static void  isBodyContainsValue(Response response, String expectedResult){
+        response.then().assertThat().body(containsString(expectedResult));
     }
 
 }
